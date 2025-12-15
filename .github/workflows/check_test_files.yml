@@ -8,7 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check added file names
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check added test file names
         run: |
-          git diff --name-only HEAD~1 HEAD | grep 'test_' || echo "No test files added."
-      
+          chmod +x .github/scripts/check_test_files.sh
+          .github/scripts/check_test_files.sh
